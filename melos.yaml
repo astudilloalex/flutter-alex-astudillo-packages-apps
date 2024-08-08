@@ -1,0 +1,8 @@
+name: alexastudillo_workspace
+
+packages:
+  - packages/**
+
+scripts:
+  analyze:
+    exec: dart analyze .
