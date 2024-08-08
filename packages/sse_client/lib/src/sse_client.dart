@@ -3,7 +3,8 @@ class Awesome {
 }
 
 class SSEClient {
-  const SSEClient();
 
-  
+  static String getValue(){
+    return '';
+  }
 }
