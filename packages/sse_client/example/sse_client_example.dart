@@ -1,6 +1,10 @@
 import 'package:sse_client/sse_client.dart';
 
-void main() {
-  var awesome = Awesome();
-  print('awesome: ${awesome.isAwesome}');
+Future<void> main() async {
+  final SSEClient sseClient = SSEClient(url: 'https://example.com/sse');
+  sseClient.stream.listen(
+    (data) {},
+  );
+
+  await sseClient.connect();
 }
