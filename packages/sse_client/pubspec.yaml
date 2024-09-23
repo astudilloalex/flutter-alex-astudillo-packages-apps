@@ -1,7 +1,8 @@
 name: sse_client
 description: A starting point for Dart libraries or applications.
 version: 1.0.0
-# repository: https://github.com/my_org/my_repo
+homepage: https://github.com/astudilloalex/flutter-alex-astudillo-packages-apps
+repository: https://github.com/astudilloalex/flutter-alex-astudillo-packages-apps/tree/main/packages/sse_client
 
 environment:
   sdk: ">=3.1.0 <4.0.0"
