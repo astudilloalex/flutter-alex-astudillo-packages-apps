@@ -1,4 +1,4 @@
-name: sse_client
+name: sse_dart_client
 description: Use this package to manage SSE Client connections
 version: 1.0.0
 homepage: https://github.com/astudilloalex/flutter-alex-astudillo-packages-apps
