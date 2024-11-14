@@ -32,6 +32,7 @@ class SSEClient {
   SSEClient({
     required this.url,
     this.headers = const <String, String>{},
+    this.queryParams = const <String, String>{},
   });
 
   /// The URL of the server the client is connecting to.
@@ -39,6 +40,9 @@ class SSEClient {
 
   /// Map of HTTP headers that will be sent with the request.
   final Map<String, String> headers;
+
+  /// Map of HTTP query params that will be send on url.
+  final Map<String, String> queryParams;
 
   /// Internal StreamController used to manage the data received from the server.
   final StreamController<String> _controller = StreamController<String>();
@@ -54,9 +58,20 @@ class SSEClient {
   /// If the connection is successful (status code 200), data in text format
   /// starts to be received. If an error occurs, it is added to the stream.
   Future<void> connect() async {
+    final Uri uri = Uri.parse(url);
     final Request request = Request(
       'GET',
-      Uri.parse(url),
+      Uri(
+        scheme: uri.scheme,
+        userInfo: uri.userInfo,
+        host: uri.host,
+        port: uri.port,
+        path: uri.path,
+        pathSegments: uri.pathSegments,
+        query: uri.query,
+        fragment: uri.fragment,
+        queryParameters: queryParams.isEmpty ? null : queryParams,
+      ),
     );
     request.headers.addAll(headers);
     final StreamedResponse response = await request.send();

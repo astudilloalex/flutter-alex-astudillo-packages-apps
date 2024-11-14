@@ -1,6 +1,4 @@
-/// Support for doing something awesome.
-///
-/// More dartdocs go here.
+/// This library allow listen SSE events sent by server.
 library;
 
 export 'src/sse_client.dart';
