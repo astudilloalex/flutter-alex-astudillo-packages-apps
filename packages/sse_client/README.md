@@ -16,4 +16,4 @@ To use this package, add it to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  sse_client: ^1.0.0
+  sse_client: ^1.0.2
