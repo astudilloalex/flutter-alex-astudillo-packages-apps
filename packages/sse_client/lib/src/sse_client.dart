@@ -45,7 +45,11 @@ class SSEClient {
   final Map<String, String> queryParams;
 
   /// Internal StreamController used to manage the data received from the server.
-  final StreamController<String> _controller = StreamController<String>();
+  final StreamController<String> _controller =
+      StreamController<String>.broadcast();
+
+  /// HTTP client to manage data
+  late Client _client;
 
   /// Public stream that exposes the data received from the SSE server.
   ///
@@ -58,36 +62,42 @@ class SSEClient {
   /// If the connection is successful (status code 200), data in text format
   /// starts to be received. If an error occurs, it is added to the stream.
   Future<void> connect() async {
-    final Uri uri = Uri.parse(url);
-    final Request request = Request(
-      'GET',
-      Uri(
-        scheme: uri.scheme,
-        userInfo: uri.userInfo,
-        host: uri.host,
-        port: uri.port,
-        path: uri.path,
-        pathSegments: uri.pathSegments,
-        query: uri.query,
-        fragment: uri.fragment,
-        queryParameters: queryParams.isEmpty ? null : queryParams,
-      ),
-    );
-    request.headers.addAll(headers);
-    final StreamedResponse response = await request.send();
-    if (response.statusCode != 200) {
-      _controller.addError(
-        'Failed to connect with status code: ${response.statusCode}',
+    _client = Client();
+    try {
+      // Form request
+      final Uri uri = Uri.parse(url);
+      final Request request = Request(
+        'GET',
+        Uri(
+          scheme: uri.scheme,
+          userInfo: uri.userInfo,
+          host: uri.host,
+          port: uri.port,
+          path: uri.path,
+          pathSegments: uri.pathSegments,
+          query: uri.query,
+          fragment: uri.fragment,
+          queryParameters: queryParams.isEmpty ? null : queryParams,
+        ),
       );
-    } else {
-      response.stream
-          .transform(utf8.decoder)
-          .transform(const LineSplitter())
-          .listen(
-            _onData,
-            onError: _onError,
-            onDone: _onDone,
-          );
+      request.headers.addAll(headers);
+      final StreamedResponse response = await _client.send(request);
+      if (response.statusCode != 200) {
+        _controller.addError(
+          'Failed to connect with status code: ${response.statusCode}',
+        );
+      } else {
+        response.stream
+            .transform(utf8.decoder)
+            .transform(const LineSplitter())
+            .listen(
+              _onData,
+              onError: _onError,
+              onDone: _onDone,
+            );
+      }
+    } catch (e) {
+      _controller.addError(e);
     }
   }
 
@@ -118,6 +128,7 @@ class SSEClient {
   ///
   /// This method closes the StreamController and stops any ongoing stream.
   Future<void> close() async {
+    _client.close();
     _controller.close();
   }
 }
