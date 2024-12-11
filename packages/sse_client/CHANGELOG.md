@@ -1,3 +1,6 @@
+## 1.0.4
+- Fix URI paths and segments 
+
 ## 1.0.3
 - Fix live connection
 

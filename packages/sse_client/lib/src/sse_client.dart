@@ -74,7 +74,6 @@ class SSEClient {
           host: uri.host,
           port: uri.port,
           path: uri.path,
-          pathSegments: uri.pathSegments,
           query: uri.query,
           fragment: uri.fragment,
           queryParameters: queryParams.isEmpty ? null : queryParams,
