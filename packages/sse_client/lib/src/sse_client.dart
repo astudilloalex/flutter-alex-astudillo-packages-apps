@@ -62,41 +62,46 @@ class SSEClient {
   /// If the connection is successful (status code 200), data in text format
   /// starts to be received. If an error occurs, it is added to the stream.
   Future<void> connect() async {
-    _client = Client();
-    try {
-      // Form request
-      final Uri uri = Uri.parse(url);
-      final Request request = Request(
-        'GET',
-        Uri(
-          scheme: uri.scheme,
-          userInfo: uri.userInfo,
-          host: uri.host,
-          port: uri.port,
-          path: uri.path,
-          query: uri.query,
-          fragment: uri.fragment,
-          queryParameters: queryParams.isEmpty ? null : queryParams,
-        ),
-      );
-      request.headers.addAll(headers);
-      final StreamedResponse response = await _client.send(request);
-      if (response.statusCode != 200) {
-        _controller.addError(
-          'Failed to connect with status code: ${response.statusCode}',
+    // Form request
+    final Uri uri = Uri.parse(url);
+    final Request request = Request(
+      'GET',
+      Uri(
+        scheme: uri.scheme,
+        userInfo: uri.userInfo,
+        host: uri.host,
+        port: uri.port,
+        path: uri.path,
+        query: uri.query,
+        fragment: uri.fragment,
+        queryParameters: queryParams.isEmpty ? null : queryParams,
+      ),
+    );
+    while (true) {
+      try {
+        _client = Client();
+        request.headers.addAll(headers);
+        final Future<StreamedResponse> response = _client.send(request);
+        response.asStream().listen(
+          (data) {
+            data.stream
+                .transform(const Utf8Decoder())
+                .transform(const LineSplitter())
+                .listen(
+                  _onData,
+                  onError: _onError,
+                  onDone: _onDone,
+                );
+          },
+          onError: (error) {
+            _controller.addError(error as Object);
+          },
+          onDone: () {},
         );
-      } else {
-        response.stream
-            .transform(utf8.decoder)
-            .transform(const LineSplitter())
-            .listen(
-              _onData,
-              onError: _onError,
-              onDone: _onDone,
-            );
-      }
-    } catch (e) {
-      _controller.addError(e);
+      } catch (e) {
+        _controller.addError(e);
+      } finally {}
+      return;
     }
   }
 
@@ -120,7 +125,7 @@ class SSEClient {
   ///
   /// Closes the stream to indicate that no more data will be received.
   void _onDone() {
-    _controller.close();
+    //_controller.close();
   }
 
   /// Method to close the SSE client and release the associated resources.
