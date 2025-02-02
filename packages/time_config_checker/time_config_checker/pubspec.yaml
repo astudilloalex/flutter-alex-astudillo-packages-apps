@@ -12,8 +12,14 @@ dependencies:
   flutter:
     sdk: flutter
   plugin_platform_interface: ^2.0.2
-  time_config_checker_android: ^0.0.9
-  time_config_checker_platform_interface: ^0.0.6
+  time_config_checker_android: 
+    git: 
+      url: https://github.com/astudilloalex/flutter-alex-astudillo-packages-apps.git
+      path: packages/time_config_checker/time_config_checker_android
+  time_config_checker_platform_interface:
+    git:
+      url: https://github.com/astudilloalex/flutter-alex-astudillo-packages-apps.git
+      path: packages/time_config_checker/time_config_checker_platform_interface
 
 dev_dependencies:
   ffi: ^2.1.3
