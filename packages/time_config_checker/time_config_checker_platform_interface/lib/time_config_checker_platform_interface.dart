@@ -53,6 +53,7 @@ class DefaultTimeConfigChecker extends TimeConfigCheckerPlatformInterface {
   @override
   Future<Map<String, bool>> getTimeConfig() {
     throw UnimplementedError(
-        'DefaultTimeConfigChecker.getTimeConfig() has not been implemented.');
+      'DefaultTimeConfigChecker.getTimeConfig() has not been implemented.',
+    );
   }
 }
