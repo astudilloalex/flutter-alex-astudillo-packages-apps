@@ -36,8 +36,6 @@ abstract class TimeConfigCheckerPlatformInterface extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<bool> isTimeAutomatic();
-
   /// Retrieves a map of time configuration settings.
   ///
   /// Returns a [Future<Map<String, bool>>] where the keys represent
@@ -53,12 +51,8 @@ abstract class TimeConfigCheckerPlatformInterface extends PlatformInterface {
 /// indicating that a concrete implementation must be provided for each platform.
 class DefaultTimeConfigChecker extends TimeConfigCheckerPlatformInterface {
   @override
-  Future<bool> isTimeAutomatic() {
-    throw UnimplementedError('isTimeAutomatic() has not been implemented.');
-  }
-
-  @override
   Future<Map<String, bool>> getTimeConfig() {
-    throw UnimplementedError('getTimeConfig() has not been implemented.');
+    throw UnimplementedError(
+        'DefaultTimeConfigChecker.getTimeConfig() has not been implemented.');
   }
 }

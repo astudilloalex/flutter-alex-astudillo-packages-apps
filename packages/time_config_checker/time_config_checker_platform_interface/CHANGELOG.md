@@ -1,3 +1,8 @@
+## 1.0.0
+
+* First stable release
+* Add test
+
 ## 0.0.7
 
 * Testing
