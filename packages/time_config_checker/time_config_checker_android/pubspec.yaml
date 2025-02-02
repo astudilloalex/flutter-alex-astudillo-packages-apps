@@ -1,6 +1,6 @@
 name: time_config_checker_android
 description: "A plugin for Flutter that allows you to check if the device time configured is automatic or manual."
-version: 0.0.9
+version: 0.0.11
 homepage: https://www.alexastudillo.com
 repository: https://github.com/astudilloalex/flutter-alex-astudillo-packages-apps/tree/main/packages/time_config_checker/time_config_checker_android
 
@@ -12,10 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   plugin_platform_interface: ^2.0.2
-  time_config_checker_platform_interface:
-    git:
-      url: https://github.com/astudilloalex/flutter-alex-astudillo-packages-apps.git
-      path: packages/time_config_checker/time_config_checker_platform_interface
+  time_config_checker_platform_interface: ^0.0.7
 
 dev_dependencies:
   flutter_test:

@@ -1,3 +1,7 @@
+## 0.0.13
+
+* Fix: Mapping data
+
 ## 0.0.12
 
 * Fix: Import content resolver

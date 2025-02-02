@@ -12,7 +12,11 @@ class TimeConfigCheckerAndroid extends TimeConfigCheckerPlatformInterface {
 
   @override
   Future<Map<String, bool>> getTimeConfig() async {
-    return await _channel.invokeMethod('getTimeConfig') as Map<String, bool>;
+    final Map<Object?, Object?> result =
+        await _channel.invokeMethod('getTimeConfig') as Map<Object?, Object?>;
+    return result.map(
+      (Object? key, Object? value) => MapEntry(key! as String, value! as bool),
+    );
   }
 
   @override

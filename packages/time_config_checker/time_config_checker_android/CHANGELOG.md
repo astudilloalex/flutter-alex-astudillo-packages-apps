@@ -1,3 +1,11 @@
+## 0.0.11
+
+* Fix: Mapping data
+
+## 0.0.10
+
+* Fix: Package auto instance
+
 ## 0.0.9
 
 * Fix: Import content resolver
