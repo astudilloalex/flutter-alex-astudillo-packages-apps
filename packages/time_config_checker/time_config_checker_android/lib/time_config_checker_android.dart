@@ -21,9 +21,3 @@ class TimeConfigCheckerAndroid extends TimeConfigCheckerPlatformInterface {
     throw UnimplementedError();
   }
 }
-
-void _registerTimeConfigPlugin() {
-  TimeConfigCheckerAndroid.registerWith();
-}
-
-_registerTimeConfigPlugin();
