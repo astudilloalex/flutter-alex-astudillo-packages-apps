@@ -17,7 +17,8 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   Map<String, bool> _timeConfig = {};
-  final _timeConfigCheckerAndroidPlugin = TimeConfigCheckerAndroid();
+  final TimeConfigCheckerAndroid _timeConfigCheckerAndroidPlugin =
+      TimeConfigCheckerAndroid();
 
   @override
   void initState() {
@@ -54,7 +55,7 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text('Running on: $_timeConfig\n'),
+          child: Text('Time Config: $_timeConfig\n'),
         ),
       ),
     );
