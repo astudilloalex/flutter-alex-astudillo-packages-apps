@@ -1,6 +1,6 @@
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
-import 'time_config_checker_android_method_channel.dart';
+import 'package:time_config_checker_android/time_config_checker_android_method_channel.dart';
 
 abstract class TimeConfigCheckerAndroidPlatform extends PlatformInterface {
   /// Constructs a TimeConfigCheckerAndroidPlatform.
@@ -8,7 +8,8 @@ abstract class TimeConfigCheckerAndroidPlatform extends PlatformInterface {
 
   static final Object _token = Object();
 
-  static TimeConfigCheckerAndroidPlatform _instance = MethodChannelTimeConfigCheckerAndroid();
+  static TimeConfigCheckerAndroidPlatform _instance =
+      MethodChannelTimeConfigCheckerAndroid();
 
   /// The default instance of [TimeConfigCheckerAndroidPlatform] to use.
   ///

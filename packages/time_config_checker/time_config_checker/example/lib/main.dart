@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:time_config_checker/time_config_checker.dart' as time_config_checker;
+import 'package:flutter/material.dart';
+import 'package:time_config_checker/time_config_checker.dart'
+    as time_config_checker;
 
 void main() {
   runApp(const MyApp());

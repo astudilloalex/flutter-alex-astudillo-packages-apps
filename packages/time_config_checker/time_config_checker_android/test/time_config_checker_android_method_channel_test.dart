@@ -5,11 +5,13 @@ import 'package:time_config_checker_android/time_config_checker_android_method_c
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  MethodChannelTimeConfigCheckerAndroid platform = MethodChannelTimeConfigCheckerAndroid();
+  final MethodChannelTimeConfigCheckerAndroid platform =
+      MethodChannelTimeConfigCheckerAndroid();
   const MethodChannel channel = MethodChannel('time_config_checker_android');
 
   setUp(() {
-    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(
       channel,
       (MethodCall methodCall) async {
         return '42';
@@ -18,7 +20,8 @@ void main() {
   });
 
   tearDown(() {
-    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(channel, null);
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(channel, null);
   });
 
   test('getPlatformVersion', () async {

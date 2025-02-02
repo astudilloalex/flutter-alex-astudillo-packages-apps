@@ -1,10 +1,23 @@
-
 import 'dart:async';
 import 'dart:ffi';
 import 'dart:io';
 import 'dart:isolate';
 
-import 'time_config_checker_bindings_generated.dart';
+import 'package:time_config_checker/src/time_config.dart';
+import 'package:time_config_checker/time_config_checker_bindings_generated.dart';
+import 'package:time_config_checker_platform_interface/time_config_checker_platform_interface.dart';
+
+export 'src/time_config.dart';
+
+class TimeConfigChecker {
+  const TimeConfigChecker();
+
+  Future<TimeConfig> getTimeConfig() async {
+    final Map<String, bool> timeConfig =
+        await TimeConfigCheckerPlatformInterface.instance.getTimeConfig();
+    return TimeConfig.fromJson(timeConfig);
+  }
+}
 
 /// A very short-lived native function.
 ///
@@ -51,7 +64,6 @@ final DynamicLibrary _dylib = () {
 
 /// The bindings to the native functions in [_dylib].
 final TimeConfigCheckerBindings _bindings = TimeConfigCheckerBindings(_dylib);
-
 
 /// A request to compute `sum`.
 ///
@@ -108,22 +120,27 @@ Future<SendPort> _helperIsolateSendPort = () async {
     });
 
   // Start the helper isolate.
-  await Isolate.spawn((SendPort sendPort) async {
-    final ReceivePort helperReceivePort = ReceivePort()
-      ..listen((dynamic data) {
-        // On the helper isolate listen to requests and respond to them.
-        if (data is _SumRequest) {
-          final int result = _bindings.sum_long_running(data.a, data.b);
-          final _SumResponse response = _SumResponse(data.id, result);
-          sendPort.send(response);
-          return;
-        }
-        throw UnsupportedError('Unsupported message type: ${data.runtimeType}');
-      });
+  await Isolate.spawn(
+    (SendPort sendPort) async {
+      final ReceivePort helperReceivePort = ReceivePort()
+        ..listen((dynamic data) {
+          // On the helper isolate listen to requests and respond to them.
+          if (data is _SumRequest) {
+            final int result = _bindings.sum_long_running(data.a, data.b);
+            final _SumResponse response = _SumResponse(data.id, result);
+            sendPort.send(response);
+            return;
+          }
+          throw UnsupportedError(
+            'Unsupported message type: ${data.runtimeType}',
+          );
+        });
 
-    // Send the port to the main isolate on which we can receive requests.
-    sendPort.send(helperReceivePort.sendPort);
-  }, receivePort.sendPort);
+      // Send the port to the main isolate on which we can receive requests.
+      sendPort.send(helperReceivePort.sendPort);
+    },
+    receivePort.sendPort,
+  );
 
   // Wait until the helper isolate has sent us back the SendPort on which we
   // can start sending requests.
