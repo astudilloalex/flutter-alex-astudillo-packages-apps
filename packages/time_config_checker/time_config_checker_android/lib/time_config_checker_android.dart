@@ -7,6 +7,7 @@ class TimeConfigCheckerAndroid extends TimeConfigCheckerPlatformInterface {
   );
 
   static void registerWith() {
+    print('Registering with Android, Alex');
     TimeConfigCheckerPlatformInterface.instance = TimeConfigCheckerAndroid();
   }
 
