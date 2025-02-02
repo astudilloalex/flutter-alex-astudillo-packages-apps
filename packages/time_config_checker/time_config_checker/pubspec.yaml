@@ -11,7 +11,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  plugin_platform_interface: ^2.0.2
   time_config_checker_android: ^1.0.0
   time_config_checker_ios: ^0.0.1
   time_config_checker_platform_interface: ^1.0.0
