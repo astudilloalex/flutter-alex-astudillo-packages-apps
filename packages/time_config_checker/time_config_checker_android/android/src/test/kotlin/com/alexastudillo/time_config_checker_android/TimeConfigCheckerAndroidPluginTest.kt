@@ -1,4 +1,4 @@
-package com.example.time_config_checker_android
+package com.alexastudillo.time_config_checker_android
 
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
