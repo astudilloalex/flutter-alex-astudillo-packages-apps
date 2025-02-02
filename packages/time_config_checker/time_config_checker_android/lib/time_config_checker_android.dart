@@ -14,4 +14,10 @@ class TimeConfigCheckerAndroid extends TimeConfigCheckerPlatformInterface {
   Future<Map<String, bool>> getTimeConfig() async {
     return await _channel.invokeMethod('getTimeConfig') as Map<String, bool>;
   }
+
+  @override
+  Future<bool> isTimeAutomatic() {
+    // TODO: implement isTimeAutomatic
+    throw UnimplementedError();
+  }
 }

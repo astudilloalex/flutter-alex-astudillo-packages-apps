@@ -22,8 +22,6 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    sumResult = time_config_checker.sum(1, 2);
-    sumAsyncResult = time_config_checker.sumAsync(3, 4);
   }
 
   @override

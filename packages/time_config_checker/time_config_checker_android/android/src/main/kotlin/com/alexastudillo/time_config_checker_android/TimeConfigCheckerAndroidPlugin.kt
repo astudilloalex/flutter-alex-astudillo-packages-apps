@@ -1,5 +1,6 @@
-package com.example.time_config_checker_android
+package com.alexastudillo.time_config_checker_android
 
+import android.content.ContentResolver
 import android.provider.Settings
 import androidx.annotation.NonNull
 
@@ -21,7 +22,7 @@ class TimeConfigCheckerAndroidPlugin : FlutterPlugin, MethodCallHandler {
     override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
         channel = MethodChannel(flutterPluginBinding.binaryMessenger, "time_config_checker_android")
         channel.setMethodCallHandler(this)
-        contentResolver = binding.applicationContext.contentResolver
+        contentResolver = flutterPluginBinding.applicationContext.contentResolver
     }
 
     override fun onMethodCall(call: MethodCall, result: Result) {

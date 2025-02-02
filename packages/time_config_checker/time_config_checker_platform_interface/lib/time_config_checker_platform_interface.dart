@@ -16,11 +16,18 @@ abstract class TimeConfigCheckerPlatformInterface extends PlatformInterface {
   }
 
   Future<bool> isTimeAutomatic();
+
+  Future<Map<String, bool>> getTimeConfig();
 }
 
 class DefaultTimeConfigChecker extends TimeConfigCheckerPlatformInterface {
   @override
   Future<bool> isTimeAutomatic() {
     throw UnimplementedError('isTimeAutomatic() has not been implemented.');
+  }
+
+  @override
+  Future<Map<String, bool>> getTimeConfig() {
+    throw UnimplementedError('getTimeConfig() has not been implemented.');
   }
 }
