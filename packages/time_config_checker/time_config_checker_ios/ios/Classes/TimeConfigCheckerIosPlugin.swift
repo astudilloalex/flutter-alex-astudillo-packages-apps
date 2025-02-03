@@ -1,5 +1,6 @@
 import Flutter
 import UIKit
+import Foundation
 
 public class TimeConfigCheckerIosPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
@@ -40,7 +41,11 @@ public class TimeConfigCheckerIosPlugin: NSObject, FlutterPlugin {
   }
   
   private func isTimeZoneAutomatic() -> Bool {
-    // We check if the device is set to update the time zone automatically.
-    return TimeZone.autoupdatingCurrent == TimeZone.current
+    let timeZoneSettings = CFPreferencesCopyAppValue("TimeZone" as CFString, "com.apple.preferences.datetime" as CFString)
+    if let settings = timeZoneSettings as? [String: Any],
+       let automaticTimeZone = settings["AutomaticTimeZone"] as? Bool {
+        return automaticTimeZone
+    }
+    return true
   }
 }

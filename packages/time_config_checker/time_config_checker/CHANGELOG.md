@@ -1,3 +1,7 @@
+## 0.0.15
+
+- Update iOS package
+
 ## 0.0.14
 
 - Fix: Class name on iOS
