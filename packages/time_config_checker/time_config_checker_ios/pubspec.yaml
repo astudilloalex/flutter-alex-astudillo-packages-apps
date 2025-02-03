@@ -1,12 +1,12 @@
 name: time_config_checker_ios
 description: "This package allow check if the device time configured is automatic or manual"
-version: 0.0.1
+version: 0.0.2
 homepage: https://www.alexastudillo.com
 repository: https://github.com/astudilloalex/flutter-alex-astudillo-packages-apps/tree/main/packages/time_config_checker/time_config_checker_ios
 
 environment:
   sdk: ^3.6.1
-  flutter: '>=3.3.0'
+  flutter: ">=3.3.0"
 
 dependencies:
   flutter:
@@ -38,7 +38,7 @@ flutter:
     platforms:
       ios:
         pluginClass: TimeConfigCheckerIosPlugin
-        dartPluginClass: TimeConfigCheckerIos
+        dartPluginClass: TimeConfigCheckerIOS
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
