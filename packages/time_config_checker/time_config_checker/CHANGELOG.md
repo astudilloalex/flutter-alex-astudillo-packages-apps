@@ -1,51 +1,55 @@
+## 0.0.14
+
+- Fix: Class name on iOS
+
 ## 0.0.13
 
-* Fix: Mapping data
+- Fix: Mapping data
 
 ## 0.0.12
 
-* Fix: Import content resolver
+- Fix: Import content resolver
 
 ## 0.0.11
 
-* Fix: Import content resolver
+- Fix: Import content resolver
 
 ## 0.0.10
 
-* Fix: Import content resolver
+- Fix: Import content resolver
 
 ## 0.0.9
 
-* Fix: Import content resolver
+- Fix: Import content resolver
 
 ## 0.0.8
 
-* Testing
+- Testing
 
 ## 0.0.7
 
-* Testing
+- Testing
 
 ## 0.0.6
 
-* Testing
+- Testing
 
 ## 0.0.5
 
-* Testing
+- Testing
 
 ## 0.0.4
 
-* Initial testing
+- Initial testing
 
 ## 0.0.3
 
-* Initial testing
+- Initial testing
 
 ## 0.0.2
 
-* Initial testing
+- Initial testing
 
 ## 0.0.1
 
-* Test release
+- Test release
